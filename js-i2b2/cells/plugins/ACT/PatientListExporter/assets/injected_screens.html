@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<body>
+
+		<div id='PatientListExporter-mainDiv'>
+
+			<div id="PatientListExporter-TABS" class="yui-navset">
+				<ul class="yui-nav">
+					<li id="PatientListExporter-TAB0" class="selected"><a href="#PatientListExporter-TAB0"><em>Specify Data</em></a></li>
+					<li id="PatientListExporter-TAB1"><a href="#PatientListExporter-TAB1"><em>Plugin Help</em></a></li>
+				</ul>
+				<div class="yui-content" id="PatientListExporter-CONTENT">
+					
+					<!-- Display work folders -->
+					<div class="tab-body">
+						<div class="PatientListExporter-MainContent" style="">
+							<div style="float:left;left:233px;top:13px;position:absolute;font-size:14px;">Save a list of patient i2b2 numbers </div>
+							<h1 style="padding-bottom:10px;"><img src="js-i2b2/cells/plugins/ACT/PatientListExporter/assets/table.png" align="absbottom"/> Patient List Exporter</h1>
+							<div class="PatientListExporter-MainContentPad">
+								You can generate of a list of patient i2b2 numbers :
+								<ol>
+									<li> From a set of patients saved in a workplace folder </li>
+									<li> From a previous query with a patient set</li>
+								</ol>	
+								<br>		
+								<div id="PatientListExporter-patientSelection" style="font-size:16px;color:#3F82B3;margin-top:10px;">Patients Selection:</div><br/>
+								<label id="PatientListExporter-choose">
+										<span id="PatientListExporter-patients-lbl" style="margin-top:0px;">Choose Your Patients from Workplace Folder or from Previous Query:</span>
+								</label>								
+								<div id="PatientListExporter-byWFolder">
+									<label>
+										<div class="droptrgtlbl">Workplace Folder(s):</div>
+										<div class="droptrgt SDX-WRK" id="PatientListExporter-WRKDROP"><img src="js-i2b2/cells/plugins/ACT/PatientListExporter/assets/pointer.png" align="absbottom" /> Please Drag &amp; Drop a <em>Workplace Folder</em> here</div>
+										<input type="hidden" id="PatientListExporter-workplace" name="PatientListExporter-workplace"/>
+									</label>
+								</div>
+								<div class="separator">OR</div>
+								<div id="PatientListExporter-byquery">
+									<label>
+										<div class="droptrgtlbl">Previous Query(s):</div>
+										<div class="droptrgt SDX-PRS" id="PatientListExporter-PRSDROP"><img src="js-i2b2/cells/plugins/ACT/PatientListExporter/assets/pointer.png" align="absbottom" /> Please Drag &amp; Drop a <em>Previous Query with patient set</em> here</div>
+										<input type="hidden" id="PatientListExporter-patientset" name="PatientListExporter-patientset"/>
+									</label>
+								</div>
+
+								<br>
+								<div id="PatListRequestBtnHolder" style="float:left;left:65px;position:absolute;"><button id="PatListRequestBtn" onclick="i2b2.PatientListExporter.createResults()">Download Patient List</button></div>
+								<input type="hidden" id="PatientListExporter-qmid" name="PatientListExporter-qmid"/>
+							</div>
+						</div>
+					</div>					
+                                <!-- Plugin Help -->
+                                <div>
+                                  <div class="tab-body">
+                                        <div class="PatientListExporter-MainContent">
+                                             <h1>Plugin Help</h1><br/>
+                                                <div class="PatientListExporter-MainContentPad">
+                                                  For the latest user guide, please visit the <a href="https://community.i2b2.org/wiki/display/ACT/" target="_blank">i2b2 Software for ACT</a> Community Wiki
+                                                </div>
+                                        </div>
+                                  </div>
+                                </div>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

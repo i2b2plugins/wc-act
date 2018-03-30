@@ -1,0 +1,119 @@
+*{ 
+    box-sizing: border-box;
+    font-family: Arial;
+ }
+
+ a:link, a:visited 
+ {
+  background-color: mediumpurple;
+  color: white;        
+  border-radius: 8px;
+  padding: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+ }
+
+a:hover, a:active
+{
+background-color: rebeccapurple;
+color: white;
+}
+
+
+
+body 
+{
+  background: rgb(254,255,255); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(254,255,255,1) 0%, rgba(210,235,249,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(254,255,255,1) 0%,rgba(210,235,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(254,255,255,1) 0%,rgba(210,235,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#d2ebf9',GradientType=0 ); 
+ 
+
+}
+
+.button 
+{
+  float: right;
+  background-color: mediumpurple; 
+  color: white;         
+  border-radius: 8px;
+  font-size: 16px;        
+
+}
+
+
+div 
+{
+     width: 850px;
+     margin: 5px;
+     padding: 10px;
+     border-radius: 8px;
+     border-style: groove;
+     border-color: cadetblue;
+     color: #627894; 
+     background-color: ghostwhite;
+ }
+
+ .logo 
+ {
+  background-image: url("plug1.png");
+  width: 297px;
+  height: 277px;
+  opacity: .55;
+  margin: 0 auto;
+ }
+
+h1, h2, h3 
+{
+      color: cadetblue;
+      margin: 4px;
+      padding: 2px;
+ }
+
+ label 
+ {
+   font-size: 14px;
+
+ }
+ label:hover
+ {
+   font-size: 16px;
+ }
+ 
+ .fail 
+ {
+     color: red;
+     list-style-image: url('warning.gif');
+
+ } 
+ .pass 
+ {
+     color: green;
+     list-style-image: url('check.png');
+ }
+ .info
+ {
+   color: blue;
+   list-style-image: url('info.PNG');
+ }
+ li 
+ {
+  padding-bottom: 8px;
+  line-height: 1.4;
+  font-size: 14px;
+ }
+
+ li:hover
+ {
+   background-color: azure;
+ }
+ section 
+ {
+     margin: 10px;
+ }
+
+
+ 

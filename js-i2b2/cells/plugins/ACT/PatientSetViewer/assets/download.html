@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download</title>
+  <script type="text/javascript">
+  populateHREF = function(){
+                var link = document.getElementById("Datafile-DownloadLink");
+                var file = parent.i2b2.Datafile.model.csv;
+                var contentType = 'text/csv';
+                var csvFile = new Blob([file], {type: contentType});
+               
+                if(link) link.href = window.URL.createObjectURL(csvFile);
+  };
+  </script>
+  <style>
+.Datafile-button {
+    cursor:pointer;
+    -webkit-box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+    -moz-box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+    box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+    background-color:#EEE;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border:1px solid #999;
+    color:#333;
+    font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+    font-size:12px;
+    font-weight:700;
+    padding:2px 10px;
+    height:30px;
+    margin-left: 0px;
+}
+    </style>
+</head>
+ 
+<body>
+<a class="Datafile-button" href="" id="Datafile-DownloadLink" download="datafile.csv" style="margin-left: 10px; width: 175px; text-align: center; line-height: 32px; text-decoration: none; display: block;" onclick="populateHREF();"><img src="http://i2b2act.dipr.partners.org/webclient/js-i2b2/cells/plugins/ACT/Datafile/assets/csv.png" align="absbottom" border="0"> Download Data File</a>
+
+<!--  <a value="Download Data File" href="" id="Datafile-DownloadLink" download="datafile.csv" onclick="populateHREF();">Download Data File</a>-->
+</body>
+ 
+</html>

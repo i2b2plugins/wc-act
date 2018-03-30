@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html  style="overflow: hidden;" >
+<head>
+  <title>HTML 5 IFrame</title>
+  <script type="text/javascript">
+  populateHREF = function(){
+	try{
+		//Detect if browser is Safari
+		var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+		var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+		if ((is_chrome)&&(is_safari)) {is_safari=false;}
+		
+		var dnLoadInsElemInParent = window.parent.document.getElementById('downloadInstruction');
+		if(dnLoadInsElemInParent)
+			dnLoadInsElemInParent.innerHTML = "";
+		
+		
+		var link = document.getElementById("BiobankDatafile-DownloadLink");
+		var file = parent.i2b2.BiobankDatafile.model.csv;
+		var contentType = 'text/csv';
+		if(!is_safari)
+			var csvFile = new Blob([file], {type: contentType});
+		else
+		{
+			var uri = 'data:application/csv;charset=utf-8,' + escape(file);
+			link.href = uri;
+			link.download = 'datafile.csv';
+			
+			if(dnLoadInsElemInParent)
+			{
+				dnLoadInsElemInParent.innerHTML = "THe downloaded data file can be found in Download folder as \"undefined\". Please rename the file as \"name.csv\" before using it.";
+			}
+		}
+		
+		if(csvFile){
+			if (navigator.msSaveOrOpenBlob) { // IE 10+
+				navigator.msSaveOrOpenBlob(csvFile, "datafile.csv");
+				return false;
+			} 
+			else{
+				if(link)
+					link.href = window.URL.createObjectURL(csvFile);
+			}
+		}
+	}
+	catch(e)
+	{
+		alert("Download data is not available in this browser!");
+	}
+  };
+  </script>
+  <style>
+	.BiobankDatafile-button {
+		text-decoration: none !important;
+		cursor:pointer;
+		-webkit-box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+		-moz-box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+		box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+		background-color:#EEE;
+		border-radius:3px;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
+		border:1px solid #999;
+		color:#333;
+		font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+		font-size:12px;
+		font-weight:700;
+		padding:2px 10px;
+		height:40px;
+		margin-left: 0px;
+	}
+  </style>
+</head>
+<body style="width:90%;">
+  <a class="BiobankDatafile-button" href="#" id="BiobankDatafile-DownloadLink" download="datafile.csv" onclick="populateHREF();">Download Data File</a>
+</body>
+
+</html>

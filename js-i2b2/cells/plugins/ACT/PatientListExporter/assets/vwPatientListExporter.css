@@ -1,0 +1,132 @@
+/*** CSS for main plugin wrapper ***/
+
+DIV#PatientListExporter-mainDiv {
+	padding: 0px;
+}
+
+DIV#PatientListExporter-mainDiv H1 {
+  font: 20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0 0 0 0;
+  display: block;
+  border-bottom: 1px solid #DADADA;
+  margin: 0px 0px 10px 0px;
+  color: #63758C;
+}
+
+/*** CSS for tab background ***/
+
+DIV#PatientListExporter-TABS DIV.yui-content {
+	background: #FFF;
+}
+
+DIV#PatientListExporter-TABS DIV.PatientListExporter-MainContent {
+    background:#FFF;
+    overflow:auto;
+	width:100%;
+    height:100%;
+	position:relative;
+}
+
+DIV#PatientListExporter-TABS DIV.PatientListExporter-MainContentPad {
+	padding:10px 10px;
+}
+
+DIV#PatientListExporter-mainDiv DIV.tab-body{
+	margin-left: auto;
+	margin-right: auto;
+	background: #FFF;
+	padding: 15px;
+	font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #888;
+	text-shadow: 1px 1px 1px #FFF;
+	border:1px solid black;
+}
+/*** CSS for the Specify Data tab ***/
+
+DIV#PatientListExporter-mainDiv DIV#work_folders-tree {
+	color:#000;
+}
+
+DIV#PatientListExporter-mainDiv .hidden{
+	visibility: hidden;
+}
+
+DIV#PatientListExporter-mainDiv DIV#selected_folder {
+	padding: 20px 30px 20px 40px;
+	color: blue;
+	width: 80%;
+}
+
+DIV#PatientListExporter-mainDiv DIV#selectedFolder {
+	width: 100%;
+	word-wrap:break-word
+}
+
+
+DIV#PatientListExporter-mainDiv DIV#folder_options{
+	color:#000;
+}
+
+DIV#PatientListExporter-mainDiv DIV#folder_options a {
+  display: inline-block;
+  padding: 5px;
+}
+
+DIV#PatientListExporter-mainDiv DIV.droptrgt {
+	padding: 8px 7px;
+	background: #DEEBEF;
+	margin-top: 15px;
+	text-align:left;
+	border: 1px solid #63758C;
+	width:68%;
+	overflow:hidden;
+	color: #63758C;
+	border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;    
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+DIV#PatientListExporter-mainDiv #PatListRequestBtnHolder
+{
+	padding-bottom :20px;
+}
+
+DIV#PatientListExporter-mainDiv #PatListRequestBtn
+{
+	border-radius: 4px;
+    	height: 25px;
+   	border: 1px solid;
+	width: 200px;
+}
+
+DIV#PatientListExporter-mainDiv DIV.droptrgtlbl {
+    /*padding: 6px 0px;*/
+    width: 16%;
+    text-align: right;
+    float: left;
+    font-weight: bold;
+    color: #666;
+    margin: 10px 10px 0px 0px;
+}
+
+DIV#PatientListExporter-mainDiv DIV.separator {
+	padding:20px 0px 0px 120px;
+	color:#333 !important;
+	font-weight: bold;
+}
+
+/*** CSS for the Plugin Help tab ***/
+
+DIV#PatientListExporter-TABS H2 {
+	margin:10px 0 10px 0;
+	font-size:13px;
+	color:#42558C;
+	font-weight:bold;
+}
+DIV#PatientListExporter-TABS HR {
+	margin:0;
+}
+

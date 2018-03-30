@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id='ShrineConnector-mainDiv'>
+        <div id="ShrineConnector-TABS" class="yui-navset">
+            <ul class="yui-nav">
+                <li id="ShrineConnector-TAB0" class="selected">
+                    <a href="#ShrineConnector-TAB0">
+                        <em>Create Local Query</em>
+                    </a>
+                </li>
+                <li id="ShrineConnector-TAB1">
+                    <a href="#ShrineConnector-TAB1">
+                        <em>Plugin Help</em>
+                    </a>
+                </li>
+            </ul>
+            <div class="yui-content" id="ShrineConnector-CONTENT">
+                <!-- Create Patient Set-->
+                <div>
+		  <div class="tab-body">
+                    <div class="ShrineConnector-MainContent" style="position:relative">
+                        <div class="ShrineConnector-MainContentPad">
+                            <div style="float:left;left:300px;top:13px;position:absolute;font-size:14px;">View and Refine Flagged Queries from the SHRINE</div>
+                            <h1 style="padding-bottom:10px;">
+                                <img src="js-i2b2/cells/plugins/ACT/ShrineConnector/assets/SHRINE.png" style="border: 0;" alt="Query Search"
+                                    width="32px" height="32px" align="absbottom">SHRINE to i2b2 Connector</h1>
+                            <br/>
+
+                            <div id="searchDiv">
+                                <span style="white-space:nowrap; padding: 8px;">
+                                    <strong>Search:</strong>
+                                    <label for="ShrineAdmin-matchStr" style="padding: 3px;">Query&nbsp;Name&nbsp;[Contains]</label>
+                                    <input type="text" id="ShrineAdmin-matchStr" value="" />
+                                </span>
+                                <span style="white-space:nowrap; padding: 8px;">
+                                    <label for="ShrineAdmin-userId" style="padding: 3px;">User&nbsp;Id</label>
+                                    <input type="text" style="width:100px;" id="ShrineAdmin-userId" value="" />
+                                </span>
+                                <span style="white-space:nowrap; padding: 8px;">
+                                    <label for="ShrineAdmin-maxRecords" style="padding: 3px;">Max&nbsp;Records</label>
+                                    <select id="ShrineAdmin-maxRecords">
+                                        <option value="10">10</option>
+                                        <option value="25" selected="selected">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                        <option value="250">250</option>
+                                        <option value="500">500</option>
+                                        <option value="10000">10,000</option>
+                                    </select>
+                                </span>
+                                <span style="white-space:nowrap; padding: 8px;">
+                                    <input id="ShrineAdmin-onlyflagged" type="checkbox" checked="checked" title="Show Flagged Queries only" />
+                                    <label for="ShrineAdmin-onlyflagged">Only&nbsp;Flagged
+                                        <img src="js-i2b2/cells/plugins/ACT/ShrineConnector/assets/flagged.png"
+                                            alt="Flagged" />
+                                    </label>
+                                </span>
+                                <span style="white-space:nowrap; padding: 8px;">
+                                    <input id="srcBtn" style="margin:3px; border-radius:8px; color:black; background-color:snow; font-family:helvetica;border-color:lightsteelblue;outline: none;"
+                                        type="button" onclick="javascript:i2b2.ShrineConnector.ShrineSearch();return false;"
+                                        value="Search" />
+                                    <input type="button" style="margin:3px; border-radius:8px; color:black; background-color:snow; font-family:arial,helvetica;border-color:lightsteelblue;outline: none;"
+                                        onclick="javascript:i2b2.ShrineConnector.ResetForm();return false;" value="Reset" />
+                                    <span id="workingSpan" style="display:none; color:green">
+                                        <b>Working</b>&nbsp;
+                                        <img src="js-i2b2/cells/plugins/ACT/ShrineConnector/assets/ajaxicon.gif"
+                                            style="
+                                    vertical-align: middle;
+                                    ">
+                                    </span>
+                                </span>
+                                <br>
+
+                                <span style="white-space:nowrap; padding: 8px;">
+                                    <strong>Search Results:</strong>&nbsp;&nbsp;
+                                    <span id="resultsSpan"></span>
+                                </span>
+                            </div>
+                            <div id="ShrineAdmin-results" style="padding-left:8px;overflow-x:auto;"></div>
+                            <div style="text-align:right;margin-top:15px;">
+                                <input onclick="$('ShrineConnector-TAB2').click();" type="button" class="ShrineConnector-button" value="Continue to Step 2: Create Data File &gt;"
+                                    style="display:none; margin:3px; border-radius:8px; color:#5e5588; background-color:#bbccee; font-family:arial,helvetica; border-color:lightsteelblue;"
+                                />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		  </div>
+
+                                <!-- Plugin Help -->
+                                <div>
+                                  <div class="tab-body">
+                                        <div class="ShrineConnector-MainContent">
+                                             <h1>Plugin Help</h1><br/>
+                                                <div class="ShrineConnector-MainContentPad">
+                                                  For the latest user guide, please visit the <a href="https://community.i2b2.org/wiki/display/ACT/" target="_blank">i2b2 Software for ACT</a> Community Wiki
+                                                </div>
+                                        </div>
+                                  </div>
+                                </div>
+
+
+
+                <!-- ShrineConnector-CONTENT -->
+            </div>
+            <!-- ShrineConnector-TABS -->
+        </div>
+        <!-- ShrineConnector-mainDiv -->
+    </div>
+</body>
+
+</html>

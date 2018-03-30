@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<body>
+	<div id='PatientSetViewer-mainDiv'>
+		<div id="PatientSetViewer-TABS" class="yui-navset">
+
+			<ul class="yui-nav">
+				<li id="PatientSetViewer-TAB0" class="selected"><a href="#PatientSetViewer-TAB0"><em>Patient Set Viewer</em></a></li>
+				<li id="PatientSetViewer-TAB1"><a href="#PatientSetViewer-TAB1"><em>Download Status</em></a></li>
+				<li id="PatientSetViewer-TAB2"><a href="#PatientSetViewer-TAB2"><em>History</em></a></li>
+				<li id="PatientSetViewer-TAB3"><a href="#PatientSetViewer-TAB3"><em>Plugin Help</em></a></li>
+			</ul>
+			<div class="yui-content" id="PatientSetViewer-CONTENT">
+
+				<!--Patient set Viewer -->
+				<div class="tab-body">
+					<div class="PatientSetViewer-MainContent" style="">
+					  <div style="float:left;left:217px;top:13px;position:absolute;font-size:14px;">View aggregated data for a set of patients and save a list to your workplace</div>
+						<h1 style="padding-bottom:10px;"><img src="js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/patients.gif" align="absbottom" /> Patient Set Viewer</h1>
+
+						<div id="subMenu">
+							<h3 style="font-family:helvetica; text-shadow:none;">Step 1: Select Patient Set and Define Concepts</h3>
+							<div>
+<div style="color:#888">Start by dragging and dropping a Previous Query below.</div>
+								<div class="droptrgtlbl">Patient(s):</div>
+								<div class="droptrgt SDX-PRS" id="PatientSetViewer-PRSDROP"><img src="js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/pointer.png" align="absbottom" style="margin-left:5px;"
+									/> Please Drag &amp; Drop your desired <em>Previous Query</em> with a Patient Set here</div>
+								<div style="padding-left: 105px;"><label style="display:none;"><input id="PatientSetViewer-LoadConcepts" type="checkbox" checked="checked">Include concepts from the Previous Query</label>
+									<a style="display:none;" href='#' onclick='return false;' data-tooltip='When this option is checked, concepts found in the selected query will be automatically loaded below.'><img style='margin-bottom:-3px;' src='js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/tooltip.png' /></a>
+								</div>
+								<div class="droptrgtlbl">Concept(s):</div>
+								<div class="droptrgt SDX-CONCPT" id="PatientSetViewer-CONCPTDROP">
+									<div class="concptItem"><img src="js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/pointer.png" align="absbottom" style="margin-left:5px;"
+										/> Drag &amp; Drop one or more concepts here from <em>Navigate Terms</em> or a <em>Previous Query</em></div>
+								</div>
+								<div style="padding-left: 105px;margin-bottom:10px;"><label style="display:none;"><input id="PatientSetViewer-AppendConcepts" type="checkbox">Append concepts to the list below</label>
+									<a href='#' style="display:none;" onclick='return false;' data-tooltip='When this option is checked, concepts found in a Previous Query will be appended to the list below. Concepts from Navigate Terms will always be appended.'><img style='margin-bottom:-3px;' src='js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/tooltip.png' /></a>
+								</div>
+								<div class="dropConfig" id="PatientSetViewer-CONCPTCONFIG"></div>
+								<div id="PatientSetViewer-CONCEPTS">
+
+								</div>
+							</div>
+                                                        <h3 style="font-family:helvetica; text-shadow:none;">Option: Download patient table as CSV file</h3>
+                                                        <div>
+							  If you would like to view the patient table and select patients on-screen, continue to Step 2. Otherwise, you can download the entire table as a CSV file now.<br/><br/>
+							  <input type="button" onclick="i2b2.PatientSetViewer.startDownload();return false;" class="PatientSetViewer-buttonstep" value="Download Patient Table (CSV)" /> 
+							  <br/>
+
+                                                        </div>
+							<h3 style="font-family:helvetica; text-shadow:none;">Step 2: Select a Workplace folder to store patients</h3>
+							<div>
+
+<div style="color:#888">Choose a <img src="js-i2b2/cells/WORK/assets/WORK_folder_exp.gif" align="absbottom" style="width:16px;height:16px;"/> folder in the workplace below, where your selected patients will be saved to.</div>
+								<div id="selected_folder" style="padding:0px;margin-top:15px;color:#000;font-size:16px;">Selected Folder: 
+									<span id="selectedFolder" class="selectedFolder" style="cursor:pointer;border-bottom:1px dotted #6677aa;color:#6677aa">None</span>
+								</div><br/>
+
+								<div id="psv_folder_options"><strong>Workplace</strong> <a href="JavaScript:i2b2.PatientSetViewer.LoadRootFolders(true,true);" style="text-decoration: none;outline: none;"><img width="16" border="0" height="16" src="assets/images/refreshButton.gif" alt="Refresh Workplace Folders" title="Refresh Workplace Folders" align="absbottom"></a>
+								</div>
+								<div id="work_folders-tree"></div>
+
+
+							</div>
+							<h3 style="font-family:helvetica; text-shadow:none;">Step 3: View and select patients</h3>
+							<div>
+								<div id="PatientSetViewer-ProcessTime" style="color:#888;padding:10px;font-size:14px;"></div>
+								<div id="step3Div" class="PatientSetViewer-MainContent" style="height:inherit;">
+
+									<div id="results-section" class="preview" style="display:none;">
+										<div id="PatientSetViewer-PreviewText" style="color:#888;padding:10px;font-size:14px;"></div>
+
+										<div id="PatientSetViewer-Status" style="font-size:16px;padding:10px;display:none;">
+											<img src="js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/ajax.gif" align="absmiddle" />
+										</div><br/>
+                                                                <div id="selected_folder" style="padding:0px;margin-top:15px;color:#000;font-size:16px;">Selected Folder:
+								  <span onclick="jQuery('#subMenu').accordion('option','active',1);" id="selectedFolder" class="selectedFolder" title="Click to select another folder" style="cursor:pointer;border-bottom:1px dotted #6677aa;color:#6677aa">None</span>
+                                                                </div>
+										<div id="PatientSetViewer-PreResults" style="height:auto; width:99.5%;display: table">
+										</div>
+									</div>
+
+								</div>
+								<div style="margin-top:15px;text-align:right;width:98%"><input id="PatientSetViewer-PreviousButton" onclick="i2b2.PatientSetViewer.getPrevJobPage();" type="button" class="PatientSetViewer-button"
+									 value="Previous 50 Patients" style="float:left;display:none;margin:3px; border-radius:8px; color:black; background-color:snow; font-family:helvetica;border-color:lightsteelblue;outline: none;"
+									/><input id="PatientSetViewer-ProceedButton" onclick="i2b2.PatientSetViewer.getNextJobPage();" type="button" class="PatientSetViewer-button"
+									 value="Next 50 Patients" style="float:right;display:none;margin:3px; border-radius:8px; color:black; background-color:snow; font-family:helvetica;border-color:lightsteelblue;outline: none;"
+									/></div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+                                <div>
+                                        <div class="PatientSetViewer-MainContent" style="overflow-x:hidden;">
+                                                <div style="width:100%; background: #4d4d4d;color:#fff; padding:5px;font-size:12px;">Download Status</div><br/>
+                                                <div class="PatientSetViewer-MainContentPad"><br/>
+						  <div id="PatientSetViewer-downloadstatus">
+						    
+						  </div>
+                                                </div>
+					</div>
+				</div>
+                                    <!-- History -->
+                                        <div class="tab-body">
+                                                <div class="PatientSetViewer-MainContent">
+                                                        <h1>Download History <span id="PatientSetViewer-HistoryProject"></span></h1><br/>
+                                                        <div><a href="#" onclick="i2b2.PatientSetViewer.getHistory();">Refresh</a></div><br/>
+                                                        <div id="PatientSetViewer-History"></div>
+                                                </div>
+                                    </div>
+
+				<div>
+					<div class="PatientSetViewer-MainContent" style="overflow-x:hidden;">
+						<div style="width:100%; background: #4d4d4d;color:#fff; padding:5px;font-size:12px;">Plugin Help</div><br/>
+						<div class="PatientSetViewer-MainContentPad">
+							<div id=helpDiv1 style="text-align: left;border: 2px solid rgb(83, 152, 251);background: white;border-radius: 10px; width:95%">
+								<div class="PatientSetViewer-MainContentPad">To complete the process of selecting patients follow the steps below. Each step has its own section on the previous
+									tab.
+								</div>
+								<ol>
+									<li></li>
+									<ul>
+										<li> Drag and drop a Previous Query to the <strong>Patient(s)</strong> box below. </li>
+										<li> Select any additional concepts from the <strong>Navigate Terms</strong> panel in the upper left-hand side of the
+											tool and drag them to the <strong>Concept(s)</strong> box below. You may drag in as many additional concepts as
+											needed. </li>
+										<li> Use the <strong>Aggregation Option</strong> column to select values for the concepts (default is Yes/No). </li>
+										<li> Remove any unneeded concepts by unselecting the box in the <strong>Include</strong> column.</li>
+									</ul>
+									<li></li>
+									<ul>
+										<li> Select a Workplace folder or create a new Workplace folder. This folder will be where selected patients are stored.</li>
+									</ul>
+									<li></li>
+									<ul>
+										<li> Select or unselect patients for your patient list by clicking the <img src='js-i2b2/cells/plugins/ACT/PatientSetViewer/assets/starred.png'
+											/> column.</li>
+										<li> Selected patients will appear in <strong>the selected Workplace folder.</strong></li>
+									</ul>
+								</ol>
+
+							</div>
+							<br/>
+For the latest user guide, please visit the <a href="https://community.i2b2.org/wiki/display/ACT/ACT+i2b2+Plug-Ins+User+Manual" target="_blank">i2b2 Community ACT Plug-Ins Wiki</a>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+				<!-- ############### <LabRange> ############### -->
+				<div id="PSV_itemLabRange" style="display:none;">
+					<div class="hd">Lab Range Constraint</div>
+					<div class="bd modLabValues">
+						<div style="margin: 0px 5% 12px; text-align: center;" id="PSV_valueContraintText"></div>
+						<div class="mlvBody">
+							<div class="mlvtop">
+								<div class="mlvModesGroup">
+									<div class="mlvMode"><input name="PSV_mlvfrmType" id="PSV_mlvfrmTypeNONE" value="NO_VALUE" type="radio" checked="checked" /> No value</div>
+									<div class="mlvMode"><input name="PSV_mlvfrmType" id="PSV_mlvfrmTypeFLAG" value="BY_FLAG" type="radio" /> By flag</div>
+									<div class="mlvMode"><input name="PSV_mlvfrmType" id="PSV_mlvfrmTypeVALUE" value="BY_VALUE" type="radio" /> By value</div>
+								</div>
+								<div class="mlvInputGroup">
+									<div id="PSV_mlvfrmFLAG" style="display:none">
+										Please select a range:<br />
+										<select id='PSV_mlvfrmFlagValue'><option value="">Loading...</option></select>
+									</div>
+									<div id="PSV_mlvfrmVALUE" style="display:none">
+										<p id="PSV_mlvfrmEnterOperator">
+											Please select operator:<br />
+											<select id='PSV_mlvfrmOperator'>
+													<option value="LT">LESS THAN (&lt;)</option>
+													<option value="LE">LESS THAN OR EQUAL TO (&lt;=)</option>
+													<option value="EQ">EQUAL (=)</option>
+													<option value="BETWEEN">BETWEEN</option>
+													<option value="GT">GREATER THAN (&gt;)</option>
+													<option value="GE">GREATER THAN OR EQUAL (&gt;=)</option>
+												</select>
+										</p>
+										<p id="PSV_mlvfrmEnterStringOperator">
+											Please select operator:<br />
+											<select id='PSV_mlvfrmStringOperator'>
+													<option value="LIKE[contains]">Contains</option>
+													<option value="LIKE[exact]">Exact</option>
+													<option value="LIKE[begin]">Starts With</option>
+													<option value="LIKE[end]">Ends With</option>
+												</select>
+										</p>
+										<p id="PSV_mlvfrmEnterVal">
+											Please enter a value:<br />
+											<input id="PSV_mlvfrmNumericValue" class="numInput" />
+										</p>
+										<p id="PSV_mlvfrmEnterVals" style="display:none">
+											Please enter values:<br />
+											<input id="PSV_mlvfrmNumericValueLow" class="numInput" /> &nbsp;-&nbsp; <input id="PSV_mlvfrmNumericValueHigh"
+											 class="numInput" />
+										</p>
+										<p id="PSV_mlvfrmEnterStr">Enter Search Text:<br /><input id="PSV_mlvfrmStrValue" class="strInput" /> </p>
+										<p id="PSV_mlvfrmEnterDbOperator"><input id="PSV_mlvfrmDbOperator" type="checkbox" /> Use Database Operators <i>(Advanced Searching)</i><br /></p>
+										<p id="PSV_mlvfrmEnterEnum">
+											Please select a value:<br />
+											<select id="PSV_mlvfrmEnumValue" class="enumInput" multiple="multiple" size="5" style="overflow: scroll; width: 562px;">
+													<option value="">Loading...</option>
+												</select>
+										</p>
+										<div id="PSV_frmEnterRSID" style="width:570px;height:25px;">
+											<table>
+												<tr>
+													<td width="113px">
+														<div style="width:100%;float:left; text-align:left; bottom: 0" id="PSV_frmEnterRSIDText">RS Identifier*: &nbsp;</div>
+													</td>
+													<td width="250px"><input id="PSV_frmEnterRSIDValue" class="strInput" value='rs' /></td>
+													<td width="208px">
+														<div id="PSV_searchRSID" style="display:none"><img width="20px" src="assets/images/spin.gif"></div>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<div id="PSV_frmEnterGeneName"><br />
+											<table>
+												<tr>
+													<td width="116px">
+														<div style="width:100%;float:left; text-align:left; bottom: 0" id="PSV_frmEnterGeneNameText">Enter Gene Name*: &nbsp;</div>
+													</td>
+													<td width="250px"><input id="PSV_frmEnterGeneNameValue" class="strInput" value='rs' /></td>
+													<td width="205px">
+														<div id="PSV_searchGeneName" style="display:none"><img width="20px" src="assets/images/spin.gif"></div>
+													</td>
+												</tr>
+											</table>
+										</div>
+										<div id="PSV_ZygosityContainer" style="margin: 2px 2px 0px 0px; display:none;padding-left:2px;" class="genomicsOptionsContainer">
+											<div style="width:112px;float:left; text-align:left; bottom: 0;">Zygosity*: &nbsp;</div>
+											<div style="float:left;width:77%;">
+												<select id='PSV_zygosityTypes' multiple='multiple' class="units" style="width: 250px;z-index: 3999; float:left;">
+												  <option value="Heterozygous">Heterozygous</option>
+												  <option value="Homozygous">Homozygous</option>
+												  <option value="missing_zygosity">Missing</option>
+												</select>
+											</div>
+										</div>
+										<div id="PSV_consequenceContainer" style="margin: 15px 2px 0px 0px; display:none;padding-left:2px;" class="genomicsOptionsContainer">
+											<div style="width:112px;float:left; text-align:left; bottom: 0">Consequence: &nbsp;</div>
+											<div style="float:left;width:77%;">
+												<select id='PSV_consequenceTypes' multiple='multiple' class="units" style="width: 250px;z-index: 3999; float:left;">
+												  <optgroup label="All protein-altering">
+													  <option value="Frameshift" class="consequenceOpt">Frameshift</option>
+													  <option value="missense" class="consequenceOpt">Missense</option>
+													  <option value="nonsense" class="consequenceOpt">Nonsense</option>
+													  <option value="start_loss" class="consequenceOpt">Start loss</option>
+													  <option value="stop_loss" class="consequenceOpt">Stop loss</option>
+												  </optgroup>
+												  <optgroup label="All others">
+													  <!-- <option value="">Select Protein Altering</option> -->
+													  <option value="3'UTR" class="consequenceOpt">3'UTR</option>
+													  <option value="5'UTR" class="consequenceOpt">5'UTR</option>
+													  <option value="downstream" class="consequenceOpt">Downstream (500 bases)</option>
+													  <option value="exon" class="consequenceOpt">Exon (Non-Coding)</option>
+													  <option value="In_frame" class="consequenceOpt">In-frame</option>
+													  <option value="intron" class="consequenceOpt">Intron</option>
+													  <option value="synonymous" class="consequenceOpt">Synonymous</option>
+													  <option value="upstream" class="consequenceOpt">Upstream (2 kilobases)</option>
+													  <option value="missing_consequence" class="consequenceOpt">Missing</option>
+												  </optgroup>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div style="clear:both;height:1px;overflow:hidden;"></div>
+
+								<!-- BEGIN snm0 -->
+								<!-- Lab value bars display section -->
+								<div id="PSV_mlvfrmBarContainer" style="margin: 10px; padding: 10px; text-align: center; border: 1px solid #000080; height: auto; display:none">
+									<!-- <div id="mlvfrmBarContainer" class="barContainer" style="white-space:nowrap; display:none"> -->
+									<div style="height: 55px">
+										<!-- top text -->
+										<div>Click on a bar segment to help specify a value or range:</div>
+										<div>Range in <span id="PSV_mlvfrmLblUnits" style="font-decoration:italic bold">mm/Hg</span></div>
+										<!-- bars are drawn -->
+										<div id="PSV_barToxL" style="float:left; background: none repeat scroll 0% 0% rgb(0, 0, 0); height: 15px; width: 72px;">
+											<a href="#PSV_lblToxL" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Toxic low value" class="barlink">&nbsp;</a>
+										</div>
+										<div id="PSV_barLofL" style="float:left; background: none repeat scroll 0% 0% rgb(255, 0, 0); height: 15px; width: 72px;">
+											<a href="#PSV_lblLofL" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Abnormal low value" class="barlink">&nbsp;</a>
+										</div>
+										<div id="PSV_barHofL" style="float:left; background: none repeat scroll 0% 0% rgb(255, 255, 0); height: 15px; width: 72px;">
+											<a href="PSV_#lblHofL" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Indeterminant low value" class="barlink">&nbsp;</a>
+										</div>
+										<div id="PSV_barNorm" style="float:left; background: none repeat scroll 0% 0% rgb(0, 255, 0); height: 15px; width: 72px;">
+											<a href="#" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Normal" class="barlink">&nbsp;</a>
+										</div>
+										<div id="PSV_barLofH" style="float:left; background: none repeat scroll 0% 0% rgb(255, 255, 0); height: 15px; width: 72px;">
+											<a href="#PSV_lblLofH" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Indeterminant high value" class="barlink">&nbsp;</a>
+										</div>
+										<div id="PSV_barHofH" style="float:left; background: none repeat scroll 0% 0% rgb(255, 0, 0); height: 15px; width: 72px;">
+											<a href="#PSV_lblHofH" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Abnormal high value" class="barlink">&nbsp;</a>
+										</div>
+										<div id="PSV_barToxH" style="float:left; background: none repeat scroll 0% 0% rgb(0, 0, 0); height: 15px; width: 72px;">
+											<a href="#PSV_lblToxH" onclick="i2b2.CRC.view.modalLabValues.updateValue(event)" title="Toxic high value" class="barlink">&nbsp;</a>
+										</div>
+										<!-- labels are drawn -->
+										<div id="PSV_lblToxL" style="float: left; text-align: right; width: 72px;">&nbsp;</div>
+										<div id="PSV_lblLofL" style="float: left; text-align: right; width: 72px;">&nbsp;</div>
+										<div id="PSV_lblHofL" style="float: left; text-align: right; width: 72px;">&nbsp;</div>
+										<div id="PSV_lblNorm" style="float: left; text-align: left; width: 72px;">&nbsp;</div>
+										<div id="PSV_lblLofH" style="float: left; text-align: left; width: 72px;">&nbsp;</div>
+										<div id="PSV_lblHofH" style="float: left; text-align: left; width: 72px;">&nbsp;</div>
+										<div id="PSV_lblToxH" style="float: left; text-align: left; width: 72px;">&nbsp;</div>
+									</div>
+								</div>
+
+								<!-- Units display section -->
+								<div id="PSV_mlvfrmUnitsContainer" style="margin: 10px 0px 0px 15px; display:none">
+									<div style="float:left; text-align:left; bottom: 0">Units = &nbsp;</div>
+									<span><select id='PSV_mlvfrmUnits' class="units" style="width: 500px; float:left;"><option value="0">Loading...</option></select></span>
+									<span id="PSV_mlvUnitExcluded" style="color:#900; margin-left: 20px">A value cannot be specified for these units.</span>
+								</div>
+								<!-- END snm0 -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ############### </LabRange> ############### -->
+
+				<!-- ############### <Date Range Constraint Dialog> ############### -->
+				<div id="dateConstraintDialog" style="display:none;">
+					<div class="hd">Constrain by Date Range</div>
+					<div class="bd">
+						<br />
+						<center>
+							<table style="font-size:12px">
+								<tr>
+									<td>From:</td>
+									<td></td>
+									<td>To:</td>
+								</tr>
+								<tr>
+									<td class="dateBorder">
+										<table>
+											<tr>
+												<td valign="middle"><input id="PSV_CheckboxDateStart" type="checkbox" onchange="i2b2.PatientSetViewer.UI.DateConstraint.toggleDate()"
+													/></td>
+												<td valign="middle"><input id="PSV_ConstraintDateStart" value="01/31/2008" style="width:75px;" disabled="disabled" /></td>
+												<td valign="middle">
+													<a href="Javascript:i2b2.PatientSetViewer.UI.DateConstraint.doShowCalendar('S')"><img id="PSV_DropDateStart" style="position:relative; top:1px; border:none;" class="calendarDropdown" src="assets/images/b_dropdown.gif"
+														 alt="" /></a>&nbsp;</td>
+											</tr>
+										</table>
+									</td>
+									<td>&nbsp;&nbsp;&nbsp;</td>
+									<td class="dateBorder">
+										<table>
+											<tr>
+												<td valign="middle"><input id="PSV_CheckboxDateEnd" type="checkbox" onchange="i2b2.PatientSetViewer.UI.DateConstraint.toggleDate()"
+													/></td>
+												<td valign="middle"><input id="PSV_ConstraintDateEnd" value="12/31/2008" style="width:75px;" disabled="disabled" /></td>
+												<td valign="middle">
+													<a href="Javascript:i2b2.PatientSetViewer.UI.DateConstraint.doShowCalendar('E');"><img id="PSV_DropDateEnd" style="position:relative; top:1px" class="calendarDropdown" border="0" src="assets/images/b_dropdown.gif"
+														 alt="" /></a>&nbsp;</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</center>
+						<br /><br />
+					</div>
+				</div>
+
+
+
+				<!-- ############### </Date Range Constraint Dialog> ############### -->
+				<form style="display: hidden" action="js-i2b2/cells/plugins/ACT/PatientSetViewer/download.php" method="POST" id="downloadForm">
+					<input type="hidden" name="user_id" value="" />
+					<input type="hidden" name="session" value="" />
+					<input type="hidden" name="job_id" value="" />
+				</form>
+			</div>
+
+
+		</div>
+
+	</div>
+</body>
+
+</html>
