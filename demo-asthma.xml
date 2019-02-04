@@ -1,0 +1,37 @@
+<query_definition>
+	<query_name>testqueryname</query_name>
+	<query_timing>ANY</query_timing>
+	<specificity_scale>0</specificity_scale>
+	<panel>
+		<panel_number>1</panel_number>
+		<panel_accuracy_scale>100</panel_accuracy_scale>
+		<invert>0</invert>
+		<panel_timing>ANY</panel_timing>
+		<total_item_occurrences>1</total_item_occurrences>
+		<item>
+			<hlevel>4</hlevel>
+			<item_name>J45 Asthma</item_name>
+			<item_key>\\ACT_DX_ICD10_2018\ACT\Diagnosis\ICD10\V2_2018AA\A20098492\A18916341\A18916350\A17800885\</item_key>
+			<tooltip>Diagnosis ICD10\ICD-10-CM TABULAR LIST of\Diseases of the respirato\Chronic lower respiratory\Asthma\</tooltip>
+			<class>ENC</class>
+			<item_icon>FA</item_icon>
+			<item_is_synonym>false</item_is_synonym>
+		</item>
+	</panel>
+	<panel>
+		<panel_number>2</panel_number>
+		<panel_accuracy_scale>100</panel_accuracy_scale>
+		<invert>0</invert>
+		<panel_timing>ANY</panel_timing>
+		<total_item_occurrences>1</total_item_occurrences>
+		<item>
+			<hlevel>7</hlevel>
+			<item_name>Albuterol</item_name>
+			<item_key>\\ACT_MEDS_VA_2018\ACT\Medications\MedicationsByVaClass\V2_09302018\N0000029237\N0000029238\N0000029240\435\</item_key>
+			<tooltip>MedicationsByVaClass\Respiratory tract medications\Antiasthma/bronchodilators\Bronchodilators,sympathomimetic,inhalation\Albuterol\Albuterol</tooltip>
+			<class>ENC</class>
+			<item_icon>FA</item_icon>
+			<item_is_synonym>false</item_is_synonym>
+		</item>
+	</panel>
+</query_definition>
