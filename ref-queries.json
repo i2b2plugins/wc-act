@@ -1,0 +1,22 @@
+[
+  {
+    "id":1,
+    "query_title":"Asthma and Medication Query",
+    "query_description":"This query finds patients with asthma and albuterol observations",
+    "query_url":"https://",
+    "trial_title":"Asthma and Albuterol",
+    "trial_description":"Study of asthma and albuterol",
+    "contact_name":"Jane Doe",
+    "wiki_url":"https://community.i2b2.org/wiki"
+  },
+  {
+    "id":2,
+    "query_title":"Cough and Cough Medicine",
+    "query_description":"This query finds patients with cough and cough medication observations",
+    "query_url":"https://",
+    "trial_title":"The Coughing Trial",
+    "trial_description":"Study of coughing",
+    "contact_name":"John Doe",
+    "wiki_url":"https://community.i2b2.org/wiki"
+  }
+]
