@@ -1,0 +1,38 @@
+<query_definition>
+	<query_name>testqueryname</query_name>
+	<query_timing>ANY</query_timing>
+	<specificity_scale>0</specificity_scale>
+	<panel>
+		<panel_number>1</panel_number>
+		<panel_accuracy_scale>100</panel_accuracy_scale>
+		<invert>0</invert>
+		<panel_timing>ANY</panel_timing>
+		<total_item_occurrences>1</total_item_occurrences>
+		<item>
+			<hlevel>4</hlevel>
+			<item_name>Cough</item_name>
+			<item_key>\\i2b2metadata\i2b2metadata\Diagnosis_ICD10\(R00-R99) Symp~mt2x\(R00-R09) Symp~evaq\(R05) Cough\</item_key>
+			<tooltip>Diagnoses \ Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified (r00-r99) \ Symptoms and signs involving the circulatory and respiratory systems (r00-r09) 
+  \ Cough</tooltip>
+			<class>ENC</class>
+			<item_icon>FA</item_icon>
+			<item_is_synonym>false</item_is_synonym>
+		</item>
+	</panel>
+	<panel>
+		<panel_number>2</panel_number>
+		<panel_accuracy_scale>100</panel_accuracy_scale>
+		<invert>0</invert>
+		<panel_timing>ANY</panel_timing>
+		<total_item_occurrences>1</total_item_occurrences>
+		<item>
+			<hlevel>10</hlevel>
+			<item_name>Cough suppressants</item_name>
+			<item_key>\\ACT_LAB_LOINC_2018\ACT\Lab\LOINC\V2_2018AA\A6321000\A23478825\A28298479\A18128599\A18167437\A18323057\A18321621\</item_key>
+			<tooltip>Lab LOINC\Lab\Drug/Tox\Drugs\Respiratory drugs\Cough suppressants\</tooltip>
+			<class>ENC</class>
+			<item_icon>FA</item_icon>
+			<item_is_synonym>false</item_is_synonym>
+		</item>
+	</panel>
+</query_definition>
